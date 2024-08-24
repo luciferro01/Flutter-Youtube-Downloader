@@ -6,6 +6,7 @@ class VideoMetaData {
   final String channel;
   final Duration duration;
   final DateTime uploadDate;
+  final String thumbnailUrl; // Added thumbnail URL field
 
   VideoMetaData({
     required this.title,
@@ -13,6 +14,7 @@ class VideoMetaData {
     required this.channel,
     required this.duration,
     required this.uploadDate,
+    required this.thumbnailUrl, // Include thumbnail URL in constructor
   });
 
   VideoMetaData copyWith({
@@ -21,6 +23,7 @@ class VideoMetaData {
     String? channel,
     Duration? duration,
     DateTime? uploadDate,
+    String? thumbnailUrl, // Include thumbnail URL in copyWith
   }) {
     return VideoMetaData(
       title: title ?? this.title,
@@ -28,6 +31,7 @@ class VideoMetaData {
       channel: channel ?? this.channel,
       duration: duration ?? this.duration,
       uploadDate: uploadDate ?? this.uploadDate,
+      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl, // Update thumbnail URL
     );
   }
 
@@ -38,6 +42,7 @@ class VideoMetaData {
       'channel': channel,
       'duration': _durationToMap(duration),
       'uploadDate': uploadDate.millisecondsSinceEpoch,
+      'thumbnailUrl': thumbnailUrl, // Add thumbnail URL to map
     };
   }
 
@@ -48,6 +53,7 @@ class VideoMetaData {
       channel: map['channel'] ?? '',
       duration: _durationFromMap(map['duration']) ?? Duration.zero,
       uploadDate: DateTime.fromMillisecondsSinceEpoch(map['uploadDate'] ?? 0),
+      thumbnailUrl: map['thumbnailUrl'] ?? '', // Extract thumbnail URL from map
     );
   }
 
@@ -58,7 +64,7 @@ class VideoMetaData {
 
   @override
   String toString() {
-    return 'VideoMetaData(title: $title, description: $description, channel: $channel, duration: $duration, uploadDate: $uploadDate)';
+    return 'VideoMetaData(title: $title, description: $description, channel: $channel, duration: $duration, uploadDate: $uploadDate, thumbnailUrl: $thumbnailUrl)';
   }
 
   @override
@@ -70,7 +76,8 @@ class VideoMetaData {
         other.description == description &&
         other.channel == channel &&
         other.duration == duration &&
-        other.uploadDate == uploadDate;
+        other.uploadDate == uploadDate &&
+        other.thumbnailUrl == thumbnailUrl; // Compare thumbnail URL
   }
 
   @override
@@ -79,7 +86,8 @@ class VideoMetaData {
         description.hashCode ^
         channel.hashCode ^
         duration.hashCode ^
-        uploadDate.hashCode;
+        uploadDate.hashCode ^
+        thumbnailUrl.hashCode; // Include thumbnail URL in hashCode
   }
 
   // Helper methods for Duration

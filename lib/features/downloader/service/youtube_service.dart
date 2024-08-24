@@ -26,7 +26,9 @@ class YoutubeServiceImpl implements YoutubeService {
   FutureEither<VideoMetaData> getMetaData(String url) async {
     try {
       final video = await _youtubeExplode.videos.get(url);
+
       final metaData = VideoMetaData(
+        thumbnailUrl: video.thumbnails.standardResUrl,
         title: video.title,
         description: video.description,
         channel: video.author,

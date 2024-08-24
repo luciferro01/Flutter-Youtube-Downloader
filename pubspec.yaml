@@ -38,6 +38,7 @@ dependencies:
   youtube_explode_dart: ^2.2.1
   flutter_riverpod: ^2.5.1
   fpdart: ^1.1.0
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
